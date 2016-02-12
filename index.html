@@ -8,6 +8,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title>index.html</title>
+	<meta name="viewport" content="user-scalable=no, width=device-width" /> 
 	<script language="JavaScript">
 function add()
 {
@@ -19,10 +20,15 @@ function view()
 	document.note.action="view.php";
 	document.note.submit();
 }
+function search()
+{
+	document.note.action="search.php";
+	document.note.submit();
+}
 var date=new Date();
 var year=1900+date.getYear();
-var month=date.getMonth();
-var day=date.getDay();
+var month=1+date.getMonth();
+var day=date.getDate();
 	</script>
 </head>
 <html>
@@ -31,12 +37,12 @@ var day=date.getDay();
 		<form action="" name="note" method="get" target="mainFrame">
 			<select name="year">
 				<script>
-for(var i=2011;i<year;++i)
+for(var i=2015;i<year;++i)
 {
 	document.write("<option value="+i+">"+i+"</option>");
 }
 document.write("<option value="+i+" selected>"+i+"</option>");
-for(var i=year+1;i<2022;++i)
+for(var i=year+1;i<2035;++i)
 {
 	document.write("<option value="+i+">"+i+"</option>");
 }
@@ -70,7 +76,8 @@ for(var i=day+1;i<=31;++i)
 			</select>
 			</br>
 			<input type="button" onClick="add();" value="add">
-			<input type="button" onClick="view();" value="view"></br>
+			<input type="button" onClick="view();" value="view">
+			<input type="button" onClick="search();" value="search"></br>
 		</form>
 		<iframe name="mainFrame" width="100%" onLoad="this.height=50+this.contentDocument.body.offsetHeight">
 		</iframe>

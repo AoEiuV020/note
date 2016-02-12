@@ -17,15 +17,20 @@ $year=$_GET["year"];
 $month=$_GET["month"];
 $day=$_GET["day"];
 $dir="./".$year."/".$month."/".$day;
-mkdir($dir,0775,true);
-$order=0;
-while(file_exists($dir."/".$order))
+if($_GET["order"]===null)
 {
-	++$order;
+	$order=0;
+	while(file_exists($dir."/".$order))
+	{
+		++$order;
+	}
+}
+else
+{
+	$order=$_GET["order"];
 }
 $path=$dir."/".$order;
-echo "mkdir ".$path." : "."</br>\n";
-echo $year.".".$month.".".$day."</br>\n";
+echo $path."</br>\n";
 ?>
 		</p>
 		<p>
@@ -34,7 +39,14 @@ echo $year.".".$month.".".$day."</br>\n";
 			<input type="file" name="file" id="file"><br>
 			<input type="hidden" name="path" value="<?php echo $path;?>">
 			<input type="submit" name="submit" value="Submit"></br>
-			<textarea type="textarea" name="textarea" style="width:100%" rows=24 value=""></textarea>
+			<textarea type="textarea" name="textarea" style="width:100%" rows=24 value=""><?php
+setlocale(LC_ALL, 'zh_CN.UTF-8'); 
+$filename=$_GET["filename"];
+if(is_file($filename)&&is_readable($filename))
+{
+	echo file_get_contents($filename);
+}
+?></textarea>
 		</form>
 		</p>
 	</body>

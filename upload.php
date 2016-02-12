@@ -6,17 +6,16 @@
 ***************************************************-->
 
 <?php
-// In PHP versions earlier than 4.1.0, $HTTP_POST_FILES should be used instead
-// of $_FILES.
+setlocale(LC_ALL, 'zh_CN.UTF-8'); 
 
 $uploaddir = $_POST["path"];
 
 echo '<pre>';
-mkdir($uploaddir,0775,true);
 $uploadfile = $uploaddir ."/". basename($_FILES['file']['name']);
 if(strlen($_FILES['file']['name'])>0)
 {
-	if(!strcmp(substr($uploadfile,-4),".php"))
+	mkdir($uploaddir,0775,true);
+	if(strlen($uploadfile)>=4&&!strcmp(substr($uploadfile,-4),".php"))
 	{
 		$uploadfile=substr($uploadfile,0,-4).".txt";
 	}
@@ -33,6 +32,7 @@ else
 }
 if(strlen($_POST["textarea"])>0)
 {
+	mkdir($uploaddir,0775,true);
 	$uploadnote=$uploaddir."/"."note.txt";
 	$note=fopen($uploadnote,"w");
 	$len=fwrite($note,$_POST["textarea"]);
