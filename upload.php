@@ -34,10 +34,16 @@ if(strlen($_POST["textarea"])>0)
 {
 	mkdir($uploaddir,0775,true);
 	$uploadnote=$uploaddir."/"."note.txt";
-	$note=fopen($uploadnote,"w");
-	$len=fwrite($note,$_POST["textarea"]);
-	echo "note记录".$len."字节";
-	fclose($note);
+	if(($note=fopen($uploadnote,"w"))!==false)
+	{
+		$len=fwrite($note,$_POST["textarea"]);
+		echo "note记录".$len."字节，";
+		fclose($note);
+	}
+	else
+	{
+		echo $uploadnote." 不可写，";
+	}
 }
 print "</pre>\n";
 
