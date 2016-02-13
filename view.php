@@ -55,7 +55,8 @@ if(is_dir($dir))
 			$date="year=".$year."&month=".$month."&day=".$day;
 			echo "<a href=\"add.php?".$date."&order=".$order."&filename=".$notepath."\"".">edit</a> ";
 			$notetxt=fopen($notepath,"r");
-			echo substr(fgets($notetxt),0,20)." ...";
+			//echo substr(fgets($notetxt),0,20)." ...";
+			echo (fgets($notetxt))." ...";
 			fclose($notetxt);
 		}
 		echo "</br>\n";

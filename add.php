@@ -41,7 +41,7 @@ echo $path."</br>\n";
 			<input type="submit" name="submit" value="Submit"></br>
 			<textarea type="textarea" name="textarea" style="width:100%" rows=24 value=""><?php
 setlocale(LC_ALL, 'zh_CN.UTF-8'); 
-$filename=$_GET["filename"];
+$filename=$dir."/".$order."/"."note.txt";
 if(is_file($filename)&&is_readable($filename))
 {
 	echo file_get_contents($filename);
